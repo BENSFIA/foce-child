@@ -1,0 +1,156 @@
+@use "variables";
+@use "animations";
+
+.section {
+  opacity: 0; /* Initialement caché */
+}
+
+.fade-in-left {
+  animation: fadeInLeft 1s forwards;
+}
+
+.fade-in-right {
+  animation: fadeInRight 1s forwards;
+}
+
+.fade-in-up {
+  animation: fadeInUp 1s forwards;
+}
+
+.fade-in-down {
+  animation: fadeInDown 1s forwards;
+}
+.site-footer::after {
+  padding: 0 60px;
+}
+.section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+#studio h2::before,
+.site-footer::before,
+.site-footer::after,
+.story h2::after,
+.story__article::after,
+h2::after {
+  /* Nom de l'animation */
+  animation: spin 10s linear infinite;
+  object-fit: cover;
+}
+/* section banner */
+.banner {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 806px;
+  perspective: 1px;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  min-height: 100%;
+
+  z-index: -1;
+  object-fit: cover;
+}
+.banner img {
+  max-width: 100%;
+  height: auto;
+}
+.story {
+  @extend .fade-in-down;
+}
+/* section oscars */
+.oscars-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: auto;
+}
+#oscars {
+  position: relative; /* Ajouté pour positionner les fleurs par rapport à cette section */
+  width: 100%;
+  padding: 2em 0; /* Ajoutez de l'espace en haut et en bas pour les fleurs */
+  overflow: hidden;
+}
+.deux-fleurs {
+  display: flex;
+  justify-content: space-between;
+}
+#flower {
+  animation: spin 10s linear infinite;
+  object-fit: cover;
+}
+#oscars .oscars-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 67%;
+  margin: auto;
+}
+/* Le conteneur principal qui positionne l'ensemble du bloc */
+#oscars .h3-wrapper {
+  flex: 1; /* Pour occuper l'espace dans un conteneur parent flex */
+  position: relative; /* Essentiel pour pouvoir positionner le fond (le pseudo-élément ::before) */
+  overflow: visible;
+  padding: 1em; /* Ajoute de l'espace intérieur pour que le texte ne colle pas aux bords */
+}
+
+/* Styles pour le texte (un H3 qui serait à l'intérieur du wrapper) */
+/* Il est préférable de cibler l'élément de texte réel (ex: h3) */
+#oscars h3 {
+  position: relative; /* Garantit que le texte reste au-dessus du fond */
+  z-index: 1;
+
+  /* Styles de la police */
+
+  padding: 1.4em 0.7em;
+  font-size: 42px;
+  line-height: 1.25; /* Une valeur sans unité est plus flexible que '52.5px' */
+  text-align: left;
+  letter-spacing: -0.05em;
+  /* Propriétés de l'image de fond */
+
+  background-image: url(../images/orange-bg-oscars.png);
+  background-size: cover;
+  background-position: center; /* 'center' est souvent un meilleur choix par défaut */
+  z-index: 1;
+  margin: 0; /* On retire les marges par défaut du h3 pour éviter les interférences */
+
+  box-sizing: border-box;
+}
+
+/* Le pseudo-élément qui va servir de fond */
+.h3-wrapper::before {
+  content: ""; /* Obligatoire pour qu'un pseudo-élément s'affiche */
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
+}
+/* desactiver les fleurs du haut dans le footer  */
+.site-footer {
+  &::before {
+    content: none !important;
+  }
+  &::after {
+    content: none !important;
+  }
+}
