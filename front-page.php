@@ -5,10 +5,12 @@ get_header();
 
 <main id="primary" class="site-main">
     <section class=" section banner">
-        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo.png'); ?>"
+
+        <img class="banner-image" src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo.png'); ?>"
             alt="Logo Fleurs d'oranger & chats errants">
 
     </section>
+
     <section id="story" class="section story">
         <h2>L'histoire</h2>
         <article id="" class="story__article">
@@ -27,33 +29,65 @@ get_header();
         <article id="characters">
             <div class="main-character">
                 <h3>Les personnages</h3>
-                <?php
-                $main_character = $characters_query->posts[0];
-                echo '<figure>';
-                echo get_the_post_thumbnail($main_character->ID, 'full');
-                echo '<figcaption>' . $main_character->post_title . '</figcaption>';
-                echo '</figure>';
-                $characters_query->next_post();
-                ?>
-            </div>
-            <div class="other-characters">
-                <?php
-                while ($characters_query->have_posts()) {
-                    $characters_query->the_post();
-                    echo '<figure>';
-                    echo get_the_post_thumbnail(get_the_ID(), 'full');
-                    echo '<figcaption>';
-                    the_title();
-                    echo '</figcaption>';
-                    echo '</figure>';
-                }
-                ?>
+
             </div>
         </article>
+        <?php
+        // Inclure le template part
+        $template_part = 'template-parts/characters-slider'; // Chemin relatif sans extension
+        
+
+        if (locate_template($template_part . '.php')) {
+            get_template_part($template_part);
+        } else {
+            echo '<p>Le fichier characters-slider.php n\'a pas été trouvé dans les template-parts.</p>';
+        }
+        ?>
+        <!-- section swiper -->
+        <section class="section swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+
+                    <img src="wp-content/themes/foce-child/assets/images/Jaakuna.png" alt="Jaakuna">
+
+                </div>
+                <div class=" swiper-slide">
+
+                    <img src="wp-content/themes/foce-child/assets/images/Kawaneko.png" alt="Kawaneko">
+
+                </div>
+                <div class="swiper-slide">
+
+                    <img src="wp-content/themes/foce-child/assets/images/Orenjiiro.png" alt="Orenjiiro">
+
+                </div>
+
+                <div class="swiper-slide">
+
+                    <img src="wp-content/themes/foce-child/assets/images/Pinku.png" alt="Pinku">
+
+                </div>
+                <div class="swiper-slide">
+
+                    <img src="wp-content/themes/foce-child/assets/images/Tenshi.png" alt="Tenshi">
+
+                </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+
+        </section>
         <article id="place">
             <div>
                 <h3>Le Lieu</h3>
                 <p><?php echo get_theme_mod('place'); ?></p>
+            </div>
+            <!-- Ajout des images de nuages -->
+            <div class="clouds">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/big_cloud.png" alt="Gros nuage"
+                    class="big-cloud blur">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/little_cloud.png"
+                    alt="Petit nuage" class="little-cloud blur">
             </div>
 
         </article>
@@ -74,6 +108,7 @@ get_header();
                 errants”.</p>
         </div>
     </section>
+
     <section id="oscars" class="section oscars">
         <div class="deux-fleurs">
             <img id="flower" src="wp-content/themes/foce-child/assets/images/Sunflower.png" alt="Sunflower">

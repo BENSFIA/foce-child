@@ -63,3 +63,69 @@
     transform: translateY(0px); /* Retour à la position de départ */
   }
 }
+@keyframes move-clouds-left {
+  to {
+    transform: translateX(-300px);
+  }
+}
+@keyframes fondu-glissement {
+  from {
+    /* État de départ de l'animation */
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    /* État final de l'animation */
+    opacity: 1;
+    transform: translateX(0); /* Le titre retrouve sa position initiale */
+  }
+}
+/* Animation pour le mouvement flottant */
+@keyframes floatMultipleDirections {
+  0% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-20px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+/* Une animation plus réaliste pour les chats */
+@keyframes float4directionsEnhanced {
+  0%,
+  100% {
+    transform: translate(0, -10px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(-20px, 0) rotate(-5deg) scale(1.05);
+  }
+  50% {
+    transform: translate(0, 10px) rotate(0deg) scale(1);
+  }
+  75% {
+    transform: translate(20px, 0) rotate(5deg) scale(1.05);
+  }
+}
+
+/* Float simple */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+/* animation nuages */
+@keyframes move-clouds-300px {
+  from {
+    transform: translateX(0); /* Position de départ */
+  }
+  to {
+    transform: translateX(-300px); /* Déplacement de 300px vers la gauche */
+  }
+}
